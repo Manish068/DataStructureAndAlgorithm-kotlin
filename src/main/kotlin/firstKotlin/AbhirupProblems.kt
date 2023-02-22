@@ -41,6 +41,17 @@ class AbhirupProblems {
         }else
             ""
     }
+
+    fun pangram(value: String):Boolean{
+        var allLetterPresent = true
+        for(ch in 'a' .. 'z'){
+            if(!value.contains(ch)){
+                allLetterPresent=false
+                break
+            }
+        }
+        return allLetterPresent
+    }
 }
 
 fun main() {
@@ -50,4 +61,11 @@ fun main() {
     println(obb.notString("CandyMan"))
     println(obb.endString("abc","abcX"))
     println(obb.left2("java"))
+
+    val pangramText = "Abcdefghijklmnopqrstuvwxy".lowercase()
+    if(obb.pangram(pangramText)){
+        println("Text is pangram")
+    }else{
+        println("Text is not pangram")
+    }
 }
