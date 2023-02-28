@@ -22,6 +22,5 @@ class ValidPalindrome {
 
 fun main() {
     val obj = ValidPalindrome()
-
     println(obj.isPalindrome("A man, a plan, a canal: Panama"))
 }
