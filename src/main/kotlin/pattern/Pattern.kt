@@ -1,5 +1,7 @@
 package pattern
 
+import kotlin.math.min
+
 fun main() {
     patternA()
     println()
@@ -50,6 +52,180 @@ fun main() {
     printCountPattern()
     println()
     printAlphabetPattern()
+    println()
+    printReverseAlphabetPattern()
+    println()
+    printPattern16()
+    println()
+    printAlphabetPyramid()
+    println()
+    printPattern19()
+    println()
+    printPattern20()
+    println()
+    printPattern21()
+    println()
+    pattern22()
+}
+
+fun pattern22(){
+    val height = 2
+    for (i in 0 until 2*height-1){
+        for (j in 0 until 2*height -1){
+            val top = i
+            val left = j
+            val right: Int = (2 * height - 2) - j
+            val bottom: Int = (2 * height - 2) - i
+
+            print("${height - min(min(top,bottom), min(right,left))}")
+        }
+        println()
+    }
+}
+
+
+fun printPattern21(){
+    val height = 4
+    for (i in 1 .. height){
+        for (j in 1 .. height){
+            if(i==1 || i==height || j==1 || j==height){
+                print("*")
+            } else
+                print(" ")
+
+
+
+        }
+        println()
+    }
+
+}
+
+fun printPattern20(){
+    val height = 5
+    var spaces = 2*height -2
+    for (i in 1..2 * height) {
+        var stars = i
+        if (i > height) stars = 2 * height - i
+
+        //stars
+        for (j in 1..stars) {
+            print("*")
+        }
+
+        //spaces
+        for (j in 1 .. spaces){
+            print(" ")
+        }
+
+
+        //stars
+        for (j in 1..stars) {
+            print("*")
+        }
+
+         if(i >= height) spaces +=2 else spaces-=2
+        println()
+    }
+}
+
+
+
+fun printPattern19(){
+    val height =5
+    var space = 0
+    for (i in height downTo  1){
+        for (j in 1 .. i){
+            print("*")
+        }
+
+        for (j in 1 .. space){
+            print(" ")
+        }
+
+        for (j in 1 .. i){
+            print("*")
+        }
+
+        println()
+        space+=2
+    }
+
+    space = 2*height-1
+
+
+    for (i in 1 .. height){
+        for (j in 1 .. i){
+            print("*")
+        }
+
+        for (j in 1 until space){
+            print(" ")
+        }
+
+        for (j in 1 .. i){
+            print("*")
+        }
+
+        println()
+        space-=2
+    }
+
+
+}
+
+fun printAlphabetPyramid(){
+    val height = 4
+    for (i in 0 until height){
+        var char = '@'
+        for (j in 0 until height - i){
+            print(" ")
+        }
+
+        for (j in 0 until 2*i+1){
+            if(j <= (2*i+1)/2){
+                char+=1
+                print(char)
+            }else{
+                char-=1
+                print(char)
+            }
+        }
+
+        for (j in 0 until height - i){
+            print(" ")
+        }
+
+        println()
+
+    }
+}
+
+fun printPattern16(){
+    val height =5
+    var char = 'A'
+    for (i in 0 until height){
+        for (j in 0 .. i){
+            print(char)
+        }
+        char+=1
+        println()
+    }
+}
+
+fun printReverseAlphabetPattern(){
+    val height = 5
+
+    for(i in height downTo  1){
+        //for capital A
+        var alphaAscii =65
+        for (j in 1 .. i){
+            val char = alphaAscii.toChar()
+            print("$char")
+            alphaAscii++
+        }
+        println()
+    }
 }
 
 fun printAlphabetPattern(){
@@ -439,19 +615,23 @@ fun patternI() {
 fun patternJ() {
     val row = 8
     for (i in 0 until row) {
-        if (i == 0) {
-            for (j in 0 until row) {
-                print("*")
+        when (i) {
+            0 -> {
+                for (j in 0 until row) {
+                    print("*")
+                }
             }
-        } else if (i == row - 1) {
-            for (j in 0 until row / 2 + 1) {
+            row - 1 -> {
+                for (j in 0 until row / 2 + 1) {
 
-                print("*")
+                    print("*")
 
+                }
             }
-        } else {
-            for (j in 0 until row) {
-                if (j == row / 2) print("*") else print(" ")
+            else -> {
+                for (j in 0 until row) {
+                    if (j == row / 2) print("*") else print(" ")
+                }
             }
         }
         println()
@@ -505,7 +685,7 @@ fun patternM() {
 
     for (i in 0 until height) {
         for (j in 0 until height * 2) {
-            if (j == 0 || j == height * 2 - 1 || (i == j / 2 && j < height * 2 - 1) || (i + j == height - 1 && j < height)) {
+            if (j == 0 || j == height * 2 - 1 || (i == j / 2 ) || (i + j == height - 1 )) {
                 print("*")
             } else {
                 print(" ")
